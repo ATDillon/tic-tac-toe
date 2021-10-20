@@ -1,14 +1,14 @@
 # Tracks state of tictactoe board
 class TicTacBoard
-  private
-
-  attr_reader :inputs
+  attr_accessor :inputs
 
   def initialize(inputs = Array.new(9) { ' ' })
     @inputs = inputs
   end
 
-  def board(spaces = inputs)
+  private
+
+  def board(spaces)
     <<-BOARD
      #{spaces[0]} | #{spaces[1]} | #{spaces[2]}
     ---|---|---
@@ -21,10 +21,10 @@ class TicTacBoard
   public
 
   def print_board
-    puts board
+    puts board(inputs)
   end
 end
 
-board = TicTacBoard.new
+board = TicTacBoard.new(['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'o'])
 
 board.print_board
