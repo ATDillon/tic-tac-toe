@@ -24,7 +24,3 @@ class TicTacBoard
     puts board(inputs)
   end
 end
-
-board = TicTacBoard.new(['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'o'])
-
-board.print_board
