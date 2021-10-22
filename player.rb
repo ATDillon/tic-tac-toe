@@ -2,7 +2,7 @@
 class Player
   attr_reader :output, :player_name
 
-  def initialize(player_name, output)
+  def initialize(player_name:, output:)
     @player_name = player_name
     @output = output
   end

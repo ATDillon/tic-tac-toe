@@ -75,4 +75,4 @@ class TicTacToe
 
 end
 
-TicTacToe.new(Player.new("Player One", "x"), Player.new("Player Two", "o"), TicTacBoard.new).game
+TicTacToe.new(Player.new(player_name: 'Player One', output: 'x'), Player.new(player_name: 'Player Two', output: 'o'), TicTacBoard.new).game
