@@ -40,7 +40,7 @@ class TicTacToe
   end
 
   def player_coordinates(player)
-    coordinates_check(player.both_coordinates, player)
+    coordinates_check(player.coordinates, player)
   end
 
   def coordinates_check(coordinates, player)

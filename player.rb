@@ -13,25 +13,24 @@ class Player
     gets.chomp.to_i
   end
 
-  def one_coordinate
+  def selection_check
     begin
-      coordinate = player_input
-      raise unless coordinate >= 0 && coordinate < 3
+      selection = player_input
+      raise unless selection >= 1 && selection <= 9
     rescue RuntimeError
-      puts 'Error, please put a number 0-2:'
+      puts 'Error, please enter a number 1-9:'
       retry
     end
-    coordinate
+    selection
   end
 
   public
 
-  def both_coordinates
-    coordinates = []
-    puts "#{player_name}, please enter X then Y coordinates (0-2):"
-    puts 'X:'
-    coordinates.push(one_coordinate)
-    puts 'Y:'
-    coordinates.push(one_coordinate)
+  def coordinates
+    coordinates = { 1 => [0, 0], 2 => [0, 1], 3 => [0, 2],
+                    4 => [1, 0], 5 => [1, 1], 6 => [1, 2],
+                    7 => [2, 0], 8 => [2, 1], 9 => [2, 2] }
+    puts "#{player_name}, enter a number 1-9:"
+    coordinates[selection_check]
   end
 end
