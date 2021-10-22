@@ -55,6 +55,14 @@ class TicTacToe
     board.print_board
   end
 
+  def replay
+    puts 'Play again? y/n'
+    return unless gets.chomp == 'y'
+
+    board.clear_board
+    game
+  end
+
   public
 
   def game
@@ -70,6 +78,7 @@ class TicTacToe
 
       break if draw?
     end
+    replay
   end
 end
 
