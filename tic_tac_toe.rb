@@ -12,31 +12,6 @@ class TicTacToe
     @board = board
     @player_one = player_one
     @player_two = player_two
-    @spaces = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-  end
-
-  def row_filled?(output)
-    spaces.any? { |array| array.all?(output) }
-  end
-
-  def column_filled?(output)
-    if spaces.all? { |array| array[0] == output } || spaces.all? { |array| array[1] == output} ||
-       spaces.all? { |array| array[2] == output }
-      true
-    end
-  end
-
-  def diagonal_filled?(output)
-    if (spaces[0][0] == output && spaces[1][1] == output && spaces[2][2] == output) ||
-       (spaces[0][2] == output && spaces[1][1] == output && spaces[2][0] == output)
-      true
-    end
-  end
-
-  def player_win?(output)
-    if row_filled?(output) || column_filled?(output) || diagonal_filled?(output)
-      true
-    end
   end
 
   def player_coordinates(player)
@@ -45,7 +20,7 @@ class TicTacToe
 
   def coordinates_check(coordinates, player)
     begin
-      raise unless spaces[coordinates[1]][coordinates[0]] == ' '
+      raise unless board.inputs[coordinates[0]][coordinates[1]] == ' '
     rescue RuntimeError
       puts 'Space already taken, please try again'
       coordinates = player_coordinates(player)
@@ -55,9 +30,11 @@ class TicTacToe
   end
 
   def mark_board(player)
-    coordinates = player_coordinates(player)
-    spaces[coordinates[1]][coordinates[0]] = player.output
-    board.inputs=(spaces.flatten)
+    board.mark_board(player.output, player_coordinates(player))
+  end
+
+  def player_win?(mark)
+    true if board.three_in_row?(mark)
   end
 
   def victory?(player)
@@ -68,15 +45,10 @@ class TicTacToe
   end
 
   def draw?
-    unless spaces.flatten.include?(' ')
+    unless board.inputs.flatten.include?(' ')
       puts 'Cats game!'
       true
     end
-  end
-
-  def instructions
-    puts "It's time for Tic Tac Toe! Coordinates 0, 0 refer to the top left corner and 2, 2 are bottom right!"
-    puts ' '
   end
 
   def round(player)
@@ -87,7 +59,6 @@ class TicTacToe
   public
 
   def game
-    instructions
     board.print_board
     loop do
       round(player_one)
@@ -102,10 +73,6 @@ class TicTacToe
     end
   end
 
-  def test
-    board.inputs=(spaces.flatten)
-    board.print_board
-  end
 end
 
 TicTacToe.new(Player.new("Player One", "x"), Player.new("Player Two", "o"), TicTacBoard.new).game
