@@ -1,6 +1,12 @@
 # Tracks state of tictactoe board
 class TicTacBoard
-  attr_accessor :inputs
+  private
+
+  attr_writer :inputs
+
+  public
+
+  attr_reader :inputs
 
   def initialize(inputs: Array.new(3) { Array.new(3) { ' ' } })
     @inputs = inputs
@@ -50,5 +56,9 @@ class TicTacBoard
   def print_board
     puts board(inputs.flatten)
     puts ' '
+  end
+
+  def clear_board
+    self.inputs = Array.new(3) { Array.new(3) { ' ' } }
   end
 end
