@@ -6,7 +6,6 @@ class TicTacToe
   private
 
   attr_reader :player_one, :player_two, :board
-  attr_accessor :spaces
 
   def initialize(player_one:, player_two:, board:)
     @board = board
@@ -38,17 +37,17 @@ class TicTacToe
   end
 
   def victory?(player)
-    if player_win?(player.output) == true
-      puts "Congrats #{player.player_name}! You win!"
-      true
-    end
+    return false unless player_win?(player.output) == true
+
+    puts "Congrats #{player.player_name}! You win!"
+    true
   end
 
   def draw?
-    unless board.inputs.flatten.include?(' ')
-      puts 'Cats game!'
-      true
-    end
+    return false if board.inputs.flatten.include?(' ')
+
+    puts 'Cats game!'
+    true
   end
 
   def round(player)
