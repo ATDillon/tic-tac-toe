@@ -29,11 +29,12 @@ class TicTacBoard
     end
   end
 
+  def opposite_corners?(mark)
+    true if (inputs[0][0] == mark && inputs[2][2] == mark) || (inputs[0][2] == mark && inputs[2][0] == mark)
+  end
+
   def diagonal_filled?(mark)
-    if (inputs[0][0] == mark && inputs[1][1] == mark && inputs[2][2] == mark) ||
-       (inputs[0][2] == mark && inputs[1][1] == mark && inputs[2][0] == mark)
-      true
-    end
+    true if opposite_corners?(mark) && inputs[1][1] == mark
   end
 
   public
@@ -48,5 +49,6 @@ class TicTacBoard
 
   def print_board
     puts board(inputs.flatten)
+    puts ' '
   end
 end
