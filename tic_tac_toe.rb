@@ -8,7 +8,7 @@ class TicTacToe
   attr_reader :player_one, :player_two, :board
   attr_accessor :spaces
 
-  def initialize(player_one, player_two, board)
+  def initialize(player_one:, player_two:, board:)
     @board = board
     @player_one = player_one
     @player_two = player_two
@@ -72,7 +72,8 @@ class TicTacToe
       break if draw?
     end
   end
-
 end
 
-TicTacToe.new(Player.new(player_name: 'Player One', output: 'x'), Player.new(player_name: 'Player Two', output: 'o'), TicTacBoard.new).game
+TicTacToe.new(player_one: Player.new(player_name: 'Player One', output: 'x'),
+              player_two: Player.new(player_name: 'Player Two', output: 'o'),
+              board: TicTacBoard.new).game
