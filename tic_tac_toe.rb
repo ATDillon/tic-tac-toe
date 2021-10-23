@@ -57,16 +57,22 @@ class TicTacToe
 
   def replay
     puts 'Play again? y/n'
-    return unless gets.chomp == 'y'
+    return unless gets.chomp.downcase == 'y'
 
     board.clear_board
     game
   end
 
+  def start
+    puts "It's time for Tic Tac Toe! #{player_one.output}'s go first!"
+    puts ' '
+    board.print_board
+  end
+
   public
 
   def game
-    board.print_board
+    start
     loop do
       round(player_one)
       break if victory?(player_one)
